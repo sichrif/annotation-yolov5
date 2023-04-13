@@ -2,15 +2,15 @@ import React from 'react';
 import './App.scss';
 import EditorView from './views/EditorView/EditorView';
 import MainView from './views/MainView/MainView';
-import {ProjectType} from './data/enums/ProjectType';
-import {AppState} from './store';
-import {connect} from 'react-redux';
+import { ProjectType } from './data/enums/ProjectType';
+import { AppState } from './store';
+import { connect } from 'react-redux';
 import PopupView from './views/PopupView/PopupView';
 import MobileMainView from './views/MobileMainView/MobileMainView';
-import {ISize} from './interfaces/ISize';
-import {Settings} from './settings/Settings';
-import {SizeItUpView} from './views/SizeItUpView/SizeItUpView';
-import {PlatformModel} from './staticModels/PlatformModel';
+import { ISize } from './interfaces/ISize';
+import { Settings } from './settings/Settings';
+import { SizeItUpView } from './views/SizeItUpView/SizeItUpView';
+import { PlatformModel } from './staticModels/PlatformModel';
 import classNames from 'classnames';
 import NotificationsView from './views/NotificationsView/NotificationsView';
 import { RoboflowAPIDetails } from './store/ai/types';
@@ -36,14 +36,14 @@ const App: React.FC<IProps> = (
 ) => {
     const selectRoute = () => {
         if (!!PlatformModel.mobileDeviceData.manufacturer && !!PlatformModel.mobileDeviceData.os)
-            return <MobileMainView/>;
+            return <MobileMainView />;
         if (!projectType)
-            return <MainView/>;
+            return <MainView />;
         else {
             if (windowSize.height < Settings.EDITOR_MIN_HEIGHT || windowSize.width < Settings.EDITOR_MIN_WIDTH) {
-                return <SizeItUpView/>;
+                return <SizeItUpView />;
             } else {
-                return <EditorView/>;
+                return <EditorView />;
             }
         }
     };
@@ -53,11 +53,11 @@ const App: React.FC<IProps> = (
         || (roboflowAPIDetails.model !== '' && roboflowAPIDetails.key !== '' && roboflowAPIDetails.status)
 
     return (
-        <div className={classNames('App', {'AI': isAILoaded})} draggable={false}
+        <div className={classNames('App', { 'AI': isAILoaded })} draggable={false}
         >
             {selectRoute()}
-            <PopupView/>
-            <NotificationsView/>
+            <PopupView />
+            <NotificationsView />
         </div>
     );
 };

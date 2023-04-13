@@ -47,7 +47,7 @@ const TopNavigationBar: React.FC<IProps> = (props) => {
                         <img
                             draggable={false}
                             alt={'annotation-maker'}
-                            src={'/logo.png'}
+                            src={'/ico/logo.png'}
                         />
                         Annotation Maker
                     </div>

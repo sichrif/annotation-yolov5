@@ -2,6 +2,7 @@ import { AnnotationFormatType } from '../../data/enums/AnnotationFormatType';
 import { ImageData, LabelName, LabelRect } from '../../store/labels/types';
 import { ImageRepository } from '../imageRepository/ImageRepository';
 import JSZip from 'jszip';
+import * as jsYaml from 'js-yaml';
 import { saveAs } from 'file-saver';
 import { LabelsSelector } from '../../store/selectors/LabelsSelector';
 import { XMLSanitizerUtil } from '../../utils/XMLSanitizerUtil';
@@ -19,6 +20,8 @@ export class RectLabelsExporter {
     }
 
     private static async exportAsYOLO(): Promise<void> {
+        const classNames = LabelsSelector.getLabelNames();
+
         const zip = new JSZip();
         const imagesData = LabelsSelector.getImagesData();
         const totalImages = imagesData.length;
@@ -56,6 +59,18 @@ export class RectLabelsExporter {
             }
         }
 
+        const labelsArray = classNames.map(name => name.name);
+        const yamlData = {
+            train: 'train/images',
+            val: 'valid/images',
+            test: 'test/images',
+            nc: classNames.length,
+            names: labelsArray,
+        };
+        console.log("labelsArray", yamlData);
+        const yamlString = jsYaml.dump(yamlData, { indent: 2, flowLevel: 1, noArrayIndent: true });
+        zip.file('data.yaml', yamlString);
+
         try {
             const content = await zip.generateAsync({ type: 'blob' });
             saveAs(content, `${ExporterUtil.getExportFileName()}.zip`);
@@ -63,6 +78,9 @@ export class RectLabelsExporter {
             throw new Error(error as string);
         }
     }
+
+
+
 
 
 
