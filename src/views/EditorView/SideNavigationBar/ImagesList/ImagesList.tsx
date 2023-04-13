@@ -1,17 +1,17 @@
 import React from 'react';
-import {connect} from "react-redux";
-import {LabelType} from "../../../../data/enums/LabelType";
-import {ISize} from "../../../../interfaces/ISize";
-import {AppState} from "../../../../store";
-import {ImageData, LabelPoint, LabelRect} from "../../../../store/labels/types";
-import {VirtualList} from "../../../Common/VirtualList/VirtualList";
+import { connect } from "react-redux";
+import { LabelType } from "../../../../data/enums/LabelType";
+import { ISize } from "../../../../interfaces/ISize";
+import { AppState } from "../../../../store";
+import { ImageData, LabelPoint, LabelRect } from "../../../../store/labels/types";
+import { VirtualList } from "../../../Common/VirtualList/VirtualList";
 import ImagePreview from "../ImagePreview/ImagePreview";
 import './ImagesList.scss';
-import {ContextManager} from "../../../../logic/context/ContextManager";
-import {ContextType} from "../../../../data/enums/ContextType";
-import {ImageActions} from "../../../../logic/actions/ImageActions";
-import {EventType} from "../../../../data/enums/EventType";
-import {LabelStatus} from "../../../../data/enums/LabelStatus";
+import { ContextManager } from "../../../../logic/context/ContextManager";
+import { ContextType } from "../../../../data/enums/ContextType";
+import { ImageActions } from "../../../../logic/actions/ImageActions";
+import { EventType } from "../../../../data/enums/EventType";
+import { LabelStatus } from "../../../../data/enums/LabelStatus";
 
 interface IProps {
     activeImageIndex: number;
@@ -56,24 +56,11 @@ class ImagesList extends React.Component<IProps, IState> {
         })
     };
 
-    private isImageChecked = (index:number): boolean => {
+    private isImageChecked = (index: number): boolean => {
         const imageData = this.props.imagesData[index]
-        switch (this.props.activeLabelType) {
-            case LabelType.LINE:
-                return imageData.labelLines.length > 0
-            case LabelType.IMAGE_RECOGNITION:
-                return imageData.labelNameIds.length > 0
-            case LabelType.POINT:
-                return imageData.labelPoints
-                    .filter((labelPoint: LabelPoint) => labelPoint.status === LabelStatus.ACCEPTED)
-                    .length > 0
-            case LabelType.POLYGON:
-                return imageData.labelPolygons.length > 0
-            case LabelType.RECT:
-                return imageData.labelRects
-                    .filter((labelRect: LabelRect) => labelRect.status === LabelStatus.ACCEPTED)
-                    .length > 0
-        }
+        return imageData.labelRects
+            .filter((labelRect: LabelRect) => labelRect.status === LabelStatus.ACCEPTED)
+            .length > 0
     };
 
     private onClickHandler = (index: number) => {
@@ -84,7 +71,7 @@ class ImagesList extends React.Component<IProps, IState> {
         return <ImagePreview
             key={index}
             style={style}
-            size={{width: 150, height: 150}}
+            size={{ width: 150, height: 150 }}
             isScrolling={isScrolling}
             isChecked={this.isImageChecked(index)}
             imageData={this.props.imagesData[index]}
@@ -95,7 +82,7 @@ class ImagesList extends React.Component<IProps, IState> {
 
     public render() {
         const { size } = this.state;
-        return(
+        return (
             <div
                 className="ImagesList"
                 ref={ref => this.imagesListRef = ref}
@@ -103,7 +90,7 @@ class ImagesList extends React.Component<IProps, IState> {
             >
                 {!!size && <VirtualList
                     size={size}
-                    childSize={{width: 150, height: 150}}
+                    childSize={{ width: 150, height: 150 }}
                     childCount={this.props.imagesData.length}
                     childRender={this.renderImagePreview}
                     overScanHeight={200}

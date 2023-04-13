@@ -1,14 +1,14 @@
 import React from 'react';
 import './TopNavigationBar.scss';
 import StateBar from '../StateBar/StateBar';
-import {PopupWindowType} from '../../../data/enums/PopupWindowType';
-import {AppState} from '../../../store';
-import {connect} from 'react-redux';
-import {updateActivePopupType, updateProjectData} from '../../../store/general/actionCreators';
+import { PopupWindowType } from '../../../data/enums/PopupWindowType';
+import { AppState } from '../../../store';
+import { connect } from 'react-redux';
+import { updateActivePopupType, updateProjectData } from '../../../store/general/actionCreators';
 import TextInput from '../../Common/TextInput/TextInput';
-import {ImageButton} from '../../Common/ImageButton/ImageButton';
-import {Settings} from '../../../settings/Settings';
-import {ProjectData} from '../../../store/general/types';
+import { ImageButton } from '../../Common/ImageButton/ImageButton';
+import { Settings } from '../../../settings/Settings';
+import { ProjectData } from '../../../store/general/types';
 import DropDownMenu from './DropDownMenu/DropDownMenu';
 
 interface IProps {
@@ -37,7 +37,7 @@ const TopNavigationBar: React.FC<IProps> = (props) => {
 
     return (
         <div className='TopNavigationBar'>
-            <StateBar/>
+            <StateBar />
             <div className='TopNavigationBarWrapper'>
                 <div className='NavigationBarGroupWrapper'>
                     <div
@@ -46,14 +46,14 @@ const TopNavigationBar: React.FC<IProps> = (props) => {
                     >
                         <img
                             draggable={false}
-                            alt={'make-sense'}
-                            src={'/make-sense-ico-transparent.png'}
+                            alt={'annotation-maker'}
+                            src={'/logo.png'}
                         />
-                        Make Sense
+                        Annotation Maker
                     </div>
                 </div>
                 <div className='NavigationBarGroupWrapper'>
-                    <DropDownMenu/>
+                    <DropDownMenu />
                 </div>
                 <div className='NavigationBarGroupWrapper middle'>
                     <div className='ProjectName'>Project Name:</div>
@@ -68,7 +68,7 @@ const TopNavigationBar: React.FC<IProps> = (props) => {
                     <ImageButton
                         image={'ico/github-logo.png'}
                         imageAlt={'github-logo.png'}
-                        buttonSize={{width: 30, height: 30}}
+                        buttonSize={{ width: 30, height: 30 }}
                         href={Settings.GITHUB_URL}
                     />
                 </div>

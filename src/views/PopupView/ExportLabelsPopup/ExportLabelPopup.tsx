@@ -23,23 +23,7 @@ const ExportLabelPopup: React.FC<IProps> = ({ activeLabelType }) => {
     const [exportFormatType, setExportFormatType] = useState(null);
 
     const onAccept = (type: LabelType) => {
-        switch (type) {
-            case LabelType.RECT:
-                RectLabelsExporter.export(exportFormatType);
-                break;
-            case LabelType.POINT:
-                PointLabelsExporter.export(exportFormatType);
-                break;
-            case LabelType.LINE:
-                LineLabelsExporter.export(exportFormatType);
-                break;
-            case LabelType.POLYGON:
-                PolygonLabelsExporter.export(exportFormatType);
-                break;
-            case LabelType.IMAGE_RECOGNITION:
-                TagLabelsExporter.export(exportFormatType);
-                break;
-        }
+        RectLabelsExporter.export(exportFormatType)
         PopupActions.close();
     };
 

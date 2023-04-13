@@ -1,4 +1,4 @@
-import {Notification} from '../enums/Notification';
+import { Notification } from '../enums/Notification';
 
 export type NotificationContent = {
     header: string;
@@ -25,7 +25,7 @@ export const NotificationsDataMap: ExportFormatDataMap = {
     },
     [Notification.MODEL_INFERENCE_ERROR]: {
         header: 'Inference failed',
-        description: 'Looks like we were unable to run inference of your image. Please help us improve Make Sense ' +
+        description: 'Looks like we were unable to run inference of your image. Please help us improve Annotation Maker ' +
             'and let us know.'
     },
     [Notification.MODEL_LOAD_ERROR]: {
@@ -51,7 +51,7 @@ export const NotificationsDataMap: ExportFormatDataMap = {
     [Notification.UNSUPPORTED_INFERENCE_SERVER_MESSAGE]: {
         header: 'Selected inference server is not yet supported',
         description: 'Integration with selected inference server is still under construction. Stay tuned for more ' +
-            'updates on our GitHub.'
+            'updates on GitHub.'
     },
     [Notification.ROBOFLOW_INFERENCE_SERVER_ERROR]: {
         header: 'Roboflow connection failed',

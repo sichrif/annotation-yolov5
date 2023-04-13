@@ -69,84 +69,21 @@ export class ImageActions {
     let newImageData: ImageData = {
       ...imageData,
     };
-    switch (labelType) {
-      case LabelType.POINT:
-        const point = LabelsSelector.getActivePointLabel();
-        newImageData.labelPoints = imageData.labelPoints.map(
-          (labelPoint: LabelPoint) => {
-            if (labelPoint.id === point.id) {
-              return {
-                ...labelPoint,
-                labelId: labelNames[labelIndex].id,
-                status: LabelStatus.ACCEPTED,
-              };
-            }
-            return labelPoint;
-          }
-        );
-        store.dispatch(updateActiveLabelId(point.id));
-        break;
-      case LabelType.LINE:
-        const line = LabelsSelector.getActiveLineLabel();
-        newImageData.labelLines = imageData.labelLines.map(
-          (labelLine: LabelLine) => {
-            if (labelLine.id === line.id) {
-              return {
-                ...labelLine,
-                labelId: labelNames[labelIndex].id,
-                status: LabelStatus.ACCEPTED,
-              };
-            }
-            return labelLine;
-          }
-        );
-        store.dispatch(updateActiveLabelId(line.id));
-        break;
-      case LabelType.RECT:
-        const rect = LabelsSelector.getActiveRectLabel();
-        newImageData.labelRects = imageData.labelRects.map(
-          (labelRectangle: LabelRect) => {
-            if (labelRectangle.id === rect.id) {
-              return {
-                ...labelRectangle,
-                labelId: labelNames[labelIndex].id,
-                status: LabelStatus.ACCEPTED,
-              };
-            }
-            return labelRectangle;
-          }
-        );
-        store.dispatch(updateActiveLabelId(rect.id));
-        break;
-      case LabelType.POLYGON:
-        const polygon = LabelsSelector.getActivePolygonLabel();
-        newImageData.labelPolygons = imageData.labelPolygons.map(
-          (labelPolygon: LabelPolygon) => {
-            if (labelPolygon.id === polygon.id) {
-              return {
-                ...labelPolygon,
-                labelId: labelNames[labelIndex].id,
-                status: LabelStatus.ACCEPTED,
-              };
-            }
-            return labelPolygon;
-          }
-        );
-        store.dispatch(updateActiveLabelId(polygon.id));
-        break;
-      case LabelType.IMAGE_RECOGNITION:
-        const labelId: string = labelNames[labelIndex].id;
-        if (imageData.labelNameIds.includes(labelId)) {
-          newImageData.labelNameIds = remove(
-            imageData.labelNameIds,
-            (element: string) => element !== labelId
-          );
-        } else {
-          newImageData.labelNameIds = imageData.labelNameIds.concat(labelId);
-        }
-        break;
-    }
 
+    const rect = LabelsSelector.getActiveRectLabel();
+    newImageData.labelRects = imageData.labelRects.map(
+      (labelRectangle: LabelRect) => {
+        if (labelRectangle.id === rect.id) {
+          return {
+            ...labelRectangle,
+            labelId: labelNames[labelIndex].id,
+            status: LabelStatus.ACCEPTED,
+          };
+        }
+        return labelRectangle;
+      }
+    );
+    store.dispatch(updateActiveLabelId(rect.id));
     return newImageData;
   }
 }

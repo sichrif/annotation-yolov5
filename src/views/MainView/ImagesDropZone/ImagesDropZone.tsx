@@ -1,16 +1,16 @@
-import React, {PropsWithChildren} from 'react';
+import React, { PropsWithChildren } from 'react';
 import './ImagesDropZone.scss';
-import {useDropzone,DropzoneOptions} from 'react-dropzone';
-import {TextButton} from '../../Common/TextButton/TextButton';
-import {ImageData} from '../../../store/labels/types';
-import {connect} from 'react-redux';
-import {addImageData, updateActiveImageIndex} from '../../../store/labels/actionCreators';
-import {AppState} from '../../../store';
-import {ProjectType} from '../../../data/enums/ProjectType';
-import {PopupWindowType} from '../../../data/enums/PopupWindowType';
-import {updateActivePopupType, updateProjectData} from '../../../store/general/actionCreators';
-import {ProjectData} from '../../../store/general/types';
-import {ImageDataUtil} from '../../../utils/ImageDataUtil';
+import { useDropzone, DropzoneOptions } from 'react-dropzone';
+import { TextButton } from '../../Common/TextButton/TextButton';
+import { ImageData } from '../../../store/labels/types';
+import { connect } from 'react-redux';
+import { addImageData, updateActiveImageIndex } from '../../../store/labels/actionCreators';
+import { AppState } from '../../../store';
+import { ProjectType } from '../../../data/enums/ProjectType';
+import { PopupWindowType } from '../../../data/enums/PopupWindowType';
+import { updateActivePopupType, updateProjectData } from '../../../store/general/actionCreators';
+import { ProjectData } from '../../../store/general/types';
+import { ImageDataUtil } from '../../../utils/ImageDataUtil';
 import { sortBy } from 'lodash';
 
 interface IProps {
@@ -22,7 +22,7 @@ interface IProps {
 }
 
 const ImagesDropZone: React.FC<IProps> = (props: PropsWithChildren<IProps>) => {
-    const {acceptedFiles, getRootProps, getInputProps} = useDropzone({
+    const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
         accept: {
             'image/*': ['.jpeg', '.png']
         }
@@ -36,7 +36,7 @@ const ImagesDropZone: React.FC<IProps> = (props: PropsWithChildren<IProps>) => {
                 type: projectType
             });
             props.updateActiveImageIndexAction(0);
-            props.addImageDataAction(files.map((file:File) => ImageDataUtil
+            props.addImageDataAction(files.map((file: File) => ImageDataUtil
                 .createImageDataFromFileData(file)));
             props.updateActivePopupTypeAction(PopupWindowType.INSERT_LABEL_NAMES);
         }
@@ -78,11 +78,10 @@ const ImagesDropZone: React.FC<IProps> = (props: PropsWithChildren<IProps>) => {
     };
 
     const startEditorWithObjectDetection = () => startEditor(ProjectType.OBJECT_DETECTION)
-    const startEditorWithImageRecognition = () => startEditor(ProjectType.IMAGE_RECOGNITION)
 
-    return(
+    return (
         <div className='ImagesDropZone'>
-            <div {...getRootProps({className: 'DropZone'})}>
+            <div {...getRootProps({ className: 'DropZone' })}>
                 {getDropZoneContent()}
             </div>
             <div className='DropZoneButtons'>
@@ -91,11 +90,7 @@ const ImagesDropZone: React.FC<IProps> = (props: PropsWithChildren<IProps>) => {
                     isDisabled={!acceptedFiles.length}
                     onClick={startEditorWithObjectDetection}
                 />
-                <TextButton
-                    label={'Image recognition'}
-                    isDisabled={!acceptedFiles.length}
-                    onClick={startEditorWithImageRecognition}
-                />
+
             </div>
         </div>
     )

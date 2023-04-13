@@ -1,6 +1,6 @@
-import {updateActivePopupType} from '../../store/general/actionCreators';
-import {PopupWindowType} from '../enums/PopupWindowType';
-import {store} from '../../index';
+import { updateActivePopupType } from '../../store/general/actionCreators';
+import { PopupWindowType } from '../enums/PopupWindowType';
+import { store } from '../../index';
 
 export type DropDownMenuNode = {
     name: string
@@ -76,20 +76,12 @@ export const DropDownMenuData: DropDownMenuNode[] = [
         disabled: false,
         children: [
             {
-                name: 'Documentation',
-                description: 'Read more about Make Sense',
-                imageSrc: 'ico/documentation.png',
-                imageAlt: 'documentation',
-                disabled: false,
-                onClick: () => window.open('https://skalskip.github.io/make-sense', '_blank')
-            },
-            {
                 name: 'Bugs and Features',
                 description: 'Report a bug or propose a new feature',
                 imageSrc: 'ico/bug.png',
                 imageAlt: 'bug',
                 disabled: false,
-                onClick: () => window.open('https://github.com/SkalskiP/make-sense/issues', '_blank')
+                onClick: () => window.open('https://github.com/sichrif', '_blank')
             }
         ]
     }

@@ -2,11 +2,11 @@ FROM node:16.16.0
 
 RUN apt-get update && apt-get -y install git && rm -rf /var/lib/apt/lists/*
 
-COPY ./ /make-sense
+COPY ./ /annotation-maker
 
-RUN cd /make-sense && \
+RUN cd /annotation-maker && \
   npm install
 
-WORKDIR /make-sense
+WORKDIR /annotation-maker
 
 ENTRYPOINT ["npm", "run", "dev"]

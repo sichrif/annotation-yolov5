@@ -1,16 +1,16 @@
 import React from 'react';
 import './StateBar.scss';
-import {ImageData} from "../../../store/labels/types";
-import {AppState} from "../../../store";
-import {connect} from "react-redux";
-import {LabelType} from "../../../data/enums/LabelType";
+import { ImageData } from "../../../store/labels/types";
+import { AppState } from "../../../store";
+import { connect } from "react-redux";
+import { LabelType } from "../../../data/enums/LabelType";
 
 interface IProps {
     imagesData: ImageData[];
     activeLabelType: LabelType;
 }
 
-const StateBar: React.FC<IProps> = ({imagesData, activeLabelType}) => {
+const StateBar: React.FC<IProps> = ({ imagesData, activeLabelType }) => {
 
     const pointLabeledImages = imagesData.reduce((currentCount: number, currentImage: ImageData) => {
         return currentCount + (currentImage.labelPoints.length > 0 ? 1 : 0);
@@ -33,26 +33,13 @@ const StateBar: React.FC<IProps> = ({imagesData, activeLabelType}) => {
     }, 0);
 
     const getProgress = () => {
-        switch (activeLabelType) {
-            case LabelType.POINT:
-                return (100 * pointLabeledImages) / imagesData.length;
-            case LabelType.RECT:
-                return (100 * rectLabeledImages) / imagesData.length;
-            case LabelType.POLYGON:
-                return (100 * polygonLabeledImages) / imagesData.length;
-            case LabelType.LINE:
-                return (100 * lineLabeledImages) / imagesData.length;
-            case LabelType.IMAGE_RECOGNITION:
-                return (100 * tagLabeledImages) / imagesData.length;
-            default:
-                return 0;
-        }
+        return (100 * rectLabeledImages) / imagesData.length
     };
 
     return (
         <div className="StateBar">
             <div
-                style={{width: getProgress() + "%"}}
+                style={{ width: getProgress() + "%" }}
                 className="done"
             />
         </div>

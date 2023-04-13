@@ -1,7 +1,7 @@
 export interface IEditorFeature {
-    displayText:string;
-    imageSrc:string;
-    imageAlt:string;
+    displayText: string;
+    imageSrc: string;
+    imageAlt: string;
 }
 
 export const EditorFeatureData: IEditorFeature[] = [
@@ -21,7 +21,7 @@ export const EditorFeatureData: IEditorFeature[] = [
         imageAlt: 'private',
     },
     {
-        displayText: 'Support multiple label types - rects, lines, points and polygons',
+        displayText: 'Support one label type - rectangles',
         imageSrc: 'ico/labels.png',
         imageAlt: 'labels',
     },

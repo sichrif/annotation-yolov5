@@ -15,9 +15,9 @@ export const InferenceServerDataMap: Record<InferenceServerType, IInferenceServe
         isDisabled: false
     },
     [InferenceServerType.MAKESENSE]: {
-        name: 'Make Sense Inference Server',
-        imageSrc: 'ico/make-sense-ico-transparent.png',
-        imageAlt: 'make-sense-inference-server',
+        name: 'Annotation Maker Inference Server',
+        imageSrc: 'ico/logo.png',
+        imageAlt: 'annotation-maker-inference-server',
         isDisabled: true
     }
 }

@@ -107,7 +107,7 @@ const MainView: React.FC = () => {
                     <img
                         draggable={false}
                         alt={'main-logo'}
-                        src={'ico/main-image-color.png'}
+                        src={'ico/logo.png'}
                     />
                 </div>
                 <div className='EditorFeaturesWrapper'>
