@@ -1,16 +1,16 @@
 import * as posenet from '@tensorflow-models/posenet';
-import {PoseNet} from '@tensorflow-models/posenet';
-import {Pose} from '@tensorflow-models/posenet';
-import {store} from '../index';
-import {updatePoseDetectorStatus} from '../store/ai/actionCreators';
-import {AIPoseDetectionActions} from '../logic/actions/AIPoseDetectionActions';
-import {LabelType} from '../data/enums/LabelType';
-import {LabelsSelector} from '../store/selectors/LabelsSelector';
-import {updateActiveLabelType} from '../store/labels/actionCreators';
-import {submitNewNotification} from '../store/notifications/actionCreators';
-import {NotificationUtil} from '../utils/NotificationUtil';
-import {NotificationsDataMap} from '../data/info/NotificationsData';
-import {Notification} from '../data/enums/Notification';
+import { PoseNet } from '@tensorflow-models/posenet';
+import { Pose } from '@tensorflow-models/posenet';
+import { store } from '../index';
+import { updatePoseDetectorStatus } from '../store/ai/actionCreators';
+import { AIPoseDetectionActions } from '../logic/actions/AIPoseDetectionActions';
+import { LabelType } from '../data/enums/LabelType';
+import { LabelsSelector } from '../store/selectors/LabelsSelector';
+import { updateActiveLabelType } from '../store/labels/actionCreators';
+import { submitNewNotification } from '../store/notifications/actionCreators';
+import { NotificationUtil } from '../utils/NotificationUtil';
+import { NotificationsDataMap } from '../data/info/NotificationsData';
+import { Notification } from '../data/enums/Notification';
 
 export class PoseDetector {
     private static model: PoseNet;
@@ -26,11 +26,8 @@ export class PoseDetector {
             .then((model: PoseNet) => {
                 PoseDetector.model = model;
                 store.dispatch(updatePoseDetectorStatus(true));
-                store.dispatch(updateActiveLabelType(LabelType.POINT));
                 const activeLabelType: LabelType = LabelsSelector.getActiveLabelType();
-                if (activeLabelType === LabelType.POINT) {
-                    AIPoseDetectionActions.detectPoseForActiveImage();
-                }
+
                 if (callback) {
                     callback();
                 }

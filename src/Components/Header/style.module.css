@@ -1,0 +1,108 @@
+.container {
+    height: 96px;
+    background: #1A1A1A;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding: 0 40px;
+
+}
+
+.logo {
+    width: 20%;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 26px;
+    color: #B1C7DF;
+    cursor: pointer;
+}
+
+.itemsContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 60%;
+    height: 100%;
+    gap: 2vw;
+}
+
+.item {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.1px;
+    color: #FFFFFF;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.item img {
+    width: 20px;
+    height: 20px;
+}
+
+.profileOptions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    gap: 24px;
+
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    width: max-content;
+    gap: 24px;
+}
+
+.profileText {
+    text-align: right;
+    display: grid;
+    font-weight: 500;
+    justify-items: start;
+    cursor: pointer;
+}
+
+.profileName {
+    font-style: normal;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.1px;
+    cursor: pointer;
+    color: #E2E6F8;
+}
+
+.profileBadge {
+    font-size: 12px;
+    line-height: 18px;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+    color: #B1C7DF;
+}
+
+.profileRow {
+    display: flex;
+    gap: 8px;
+}
+
+.userImage {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.arrowImage {
+    cursor: pointer;
+}

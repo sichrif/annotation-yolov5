@@ -1,9 +1,12 @@
 @import './settings/_Settings';
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
 .App {
 	--leading-color: #{$secondaryColor};
 	--button-text-color: #{white};
 	--hue-value: 172deg;
+	font-family: 'Inter', sans-serif;
+	background: linear-gradient(133.84deg, #4E4E4E -16.04%, #333333 9.33%, #1A1A1A 32.02%, #1A1A1A 62.06%, #262626 87.42%, #4E4E4E 112.12%);
 }
 
 .App.AI {
