@@ -1,69 +1,37 @@
-import React from "react"
-import { AxisOptions, Chart } from "react-charts"
+import React from 'react';
+import Plot from 'react-plotly.js';
 
-type DailyStars = {
-    date: Date,
-    stars: number,
+interface Props {
+    data: number[];
 }
 
-type Series = {
-    label: string,
-    data: DailyStars[]
-}
+const Chart: React.FC<Props> = ({ data }) => {
+    const chartData = {
+        x: data.map((_, i) => i),
+        y: data,
+        type: 'scatter',
+        mode: 'lines',
+        line: { color: '#1f77b4' },
+        marker: {
+            color: 'red',
+            size: 8
+        },
+    };
 
-const data: Series[] = [
-    {
-        label: 'React Charts',
-        data: [
-            {
-                date: new Date(),
-                stars: 202123,
-            },
-            {
-                date: new Date(),
-                stars: 10234230,
-            },
-            {
-                date: new Date(),
-                stars: 10234230,
-            },
-        ]
-    },
-    {
-        label: 'React Query',
-        data: [
-            {
-                date: new Date(),
-                stars: 10234230,
-            }
-            // ...
-        ]
-    }
-]
-export default function DataChart() {
-    const primaryAxis = React.useMemo(
-        (): AxisOptions<DailyStars> => ({
-            getValue: datum => datum.date,
-        }),
-        []
-    )
-
-    const secondaryAxes = React.useMemo(
-        (): AxisOptions<DailyStars>[] => [
-            {
-                getValue: datum => datum.stars,
-            },
-        ],
-        []
-    )
+    const layout = {
+        paper_bgcolor: 'transparent',
+        plot_bgcolor: 'transparent',
+        font: { color: '#fff' },
+        xaxis: { title: 'Frame' },
+        yaxis: { title: 'Confidence' }
+    };
 
     return (
-        <Chart
-            options={{
-                data,
-                primaryAxis,
-                secondaryAxes,
-            }}
+        <Plot
+            data={[chartData]}
+            layout={layout}
         />
-    )
-}
+    );
+};
+
+export default Chart;

@@ -5,9 +5,11 @@ import Header from "../Header/Header"
 import Card from "../card/card"
 import styles from "./style.module.css"
 import React from "react";
+import Chart from "../Chart/Chart";
 
 export default function Home() {
-    const [age, setAge] = React.useState('');
+    const yoloData = [0.8, 0.9, 0.75, 0.85, 0.95];
+
     const cardContent = [
         {
             title: "+32.40%",
@@ -66,7 +68,7 @@ export default function Home() {
                     </div>
                 </div>
                 <div className={styles.charts}>
-                    <ChartContainer title="Lines chart" date="May to June 2021" Chart={() => <DataChart />} />
+                    <ChartContainer title="Lines chart" date="May to June 2021" Chart={() => <Chart data={yoloData} />} />
                 </div>
             </div>
         </div>
