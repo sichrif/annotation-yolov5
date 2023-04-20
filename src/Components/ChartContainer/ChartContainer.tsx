@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./ChartContainer.module.css";
-import { ResizableBox } from 'react-resizable';
+import { Resizable } from 'react-resizable';
 
 interface ChartContainerProps {
     title: string;
@@ -9,6 +9,10 @@ interface ChartContainerProps {
 }
 
 export default function ChartContainer(content: ChartContainerProps) {
+    const [size, setSize] = React.useState({ width: 500, height: 200 });
+    const onResize = (event, { node, size, handle }) => {
+        setSize({ width: size.width, height: size.height });
+    };
     return (
 
         <div className={styles.container}>
@@ -26,9 +30,11 @@ export default function ChartContainer(content: ChartContainerProps) {
                     <img src="/ico/dashboard/settings.svg" alt="settings icon" />
                 </div>
             </div>
-            <div className={styles.chartBody}>
-                <content.Chart />
-            </div>
+            <Resizable width={size.width} height={size.height} onResize={onResize}>
+                <div className={styles.chartBody}>
+                    <content.Chart />
+                </div>
+            </Resizable>
         </div>
     )
 }

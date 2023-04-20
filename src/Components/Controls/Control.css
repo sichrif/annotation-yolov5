@@ -1,0 +1,88 @@
+.control_Container {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: relative;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    flex-direction: column;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+}
+
+.top_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px 20px;
+}
+
+.mid__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -16pc;
+    right: 2px;
+    left: 0;
+}
+
+.bottom__container {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+.icon__btn {
+    padding: 0 10px;
+    color: #7b2cbf;
+    cursor: pointer;
+}
+
+.slider__container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+}
+
+.control__box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.inner__controls {
+    display: flex;
+    padding: 10px 0;
+    align-items: center;
+    width: 50%;
+}
+
+span {
+    color: #fff;
+    font-size: 0.8rem;
+}
+
+.second__control {
+    display: flex;
+    align-items: center;
+}
+
+.ForwardRef\(Slider2\)-thumb-4 {
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+}
+
+.duration {
+    right: 0;
+    position: absolute;
+    margin-right: 10px;
+}
+
+video {
+
+    background: linear-gradient(179.81deg, rgba(29, 49, 80, 0.6) 13.54%, rgba(177, 199, 223, 0) 47.2%, rgba(29, 49, 80, 0.6) 88.45%), url(.jpg);
+    border-radius: 16px;
+}

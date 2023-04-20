@@ -62,4 +62,15 @@
 
 .charts {
     margin-top: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.devices {
+    display: flex;
+    gap: 24px;
+    margin-top: 24px;
 }
