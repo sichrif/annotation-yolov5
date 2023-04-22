@@ -14,6 +14,7 @@ import { PlatformModel } from './staticModels/PlatformModel';
 import classNames from 'classnames';
 import NotificationsView from './views/NotificationsView/NotificationsView';
 import { RoboflowAPIDetails } from './store/ai/types';
+import DetectDetails from './Components/DetectDetails/DetectDetails';
 import Home from './Components/Home/Home';
 
 interface IProps {
@@ -40,7 +41,7 @@ const App: React.FC<IProps> = (
             return <MobileMainView />;
         if (!projectType) {
             return <Home />
-            //  <MainView />;
+            // return <MainView />;
         }
         else {
             if (windowSize.height < Settings.EDITOR_MIN_HEIGHT || windowSize.width < Settings.EDITOR_MIN_WIDTH) {
