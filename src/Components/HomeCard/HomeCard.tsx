@@ -1,4 +1,6 @@
+import MenuPopupState from "../Menu/Menu";
 import styles from "./style.module.css"
+import { useNavigate } from 'react-router-dom';
 
 interface CardProps {
     title?: string;
@@ -11,12 +13,25 @@ interface CardProps {
 
 
 export default function HomeCard(content: CardProps) {
+    const navigate = useNavigate();
+    const items = ["Edit", "Delete"];
+    function handleClick() {
+        navigate("/new-product");
+    }
     return (
-        content.type == "content" ? <div className={styles.container}>
+        content.type == "content" ? <div onClick={() => navigate(`/product-details/${content.title}`)} className={styles.container}>
             <div className={styles.cardHeader}>
-                <img src={content.icon} alt={content.title} />
-                <span>{content.title}</span>
+                <div className={styles.cardHeader}>
+                    <img src={content.icon} alt={content.title} />
+                    <span>{content.title}</span>
+                </div>
+                <div className={styles.menu}>
+                    <MenuPopupState items={items} element={
+                        <img className={styles.dots} src="ico/dashboard/dots.svg" alt="dots" />
+                    } />
+                </div>
             </div>
+
             <div className={styles.cardBody}>
                 {content.description}
             </div>
@@ -26,8 +41,10 @@ export default function HomeCard(content: CardProps) {
             <div className={styles.cardFooter}>
                 <span>{content.footer}</span>
             </div>
-        </div> : <div className={styles.container}>
-            <img height={"100px"} className={styles.plus} src="ico/dashboard/plus.svg" alt="plus" />
         </div>
+            :
+            <div onClick={handleClick} className={styles.container}>
+                <img height={"100px"} className={styles.plus} src="ico/dashboard/plus.svg" alt="plus" />
+            </div>
     )
 }

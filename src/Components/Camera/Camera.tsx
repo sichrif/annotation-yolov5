@@ -1,6 +1,6 @@
 import ReactPlayer from 'react-player'
 import styles from './style.module.css'
-import React from 'react';
+import React, { useEffect } from 'react';
 import { formatTime } from '../../utils/format';
 import Control from '../Controls/Control';
 
@@ -126,9 +126,9 @@ export default function Camera() {
                 position: 'relative',
             }}>
             <div className="player__wrapper" onMouseMove={mouseMoveHandler}>
-                {buffer || playing && <div className={styles.imageCover}></div>}
+                {!playing && <div className={styles.imageCover}></div>}
                 {playing && <div className={styles.info}>
-                    <div className={styles.infoRed}>53 km/h</div>
+                    <div className={styles.infoRed}>{videoState.playedSeconds.toFixed(2)}s</div>
                     <div className={styles.infoGreen}>1.56 km</div>
 
                 </div>}

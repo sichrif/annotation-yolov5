@@ -89,51 +89,52 @@ const MainView: React.FC = () => {
     };
 
     return (
-        <div className={getClassName()}>
-            <div className='Slider' id='lower'>
-                <div className='TriangleVertical'>
-                    <div className='TriangleVerticalContent' />
+        <>
+            <div className={getClassName()}>
+                <div className='Slider' id='lower'>
+                    <div className='TriangleVertical'>
+                        <div className='TriangleVerticalContent' />
+                    </div>
                 </div>
-            </div>
 
-            <div className='Slider' id='upper'>
-                <div className='TriangleVertical'>
-                    <div className='TriangleVerticalContent' />
+                <div className='Slider' id='upper'>
+                    <div className='TriangleVertical'>
+                        <div className='TriangleVerticalContent' />
+                    </div>
                 </div>
-            </div>
 
-            <div className='LeftColumn'>
-                <div className={'LogoWrapper'}>
-                    <img
-                        draggable={false}
-                        alt={'main-logo'}
-                        src={'ico/logo.png'}
-                    />
+                <div className='LeftColumn'>
+                    <div className={'LogoWrapper'}>
+                        <img
+                            draggable={false}
+                            alt={'main-logo'}
+                            src={'ico/logo.png'}
+                        />
+                    </div>
+                    <div className='EditorFeaturesWrapper'>
+                        {getEditorFeatureTiles()}
+                    </div>
+                    <div className='TriangleVertical'>
+                        <div className='TriangleVerticalContent' />
+                    </div>
+                    {projectInProgress && <TextButton
+                        label={'Go Back'}
+                        onClick={endProject}
+                    />}
                 </div>
-                <div className='EditorFeaturesWrapper'>
-                    {getEditorFeatureTiles()}
+                <div className='RightColumn'>
+                    <div />
+                    <ImagesDropZone />
+                    <div className='SocialMediaWrapper'>
+                        {getSocialMediaButtons({ width: 30, height: 30 })}
+                    </div>
+                    {!projectInProgress && <TextButton
+                        label={'Get Started'}
+                        onClick={startProject}
+                        externalClassName={'get-started-button'}
+                    />}
                 </div>
-                <div className='TriangleVertical'>
-                    <div className='TriangleVerticalContent' />
-                </div>
-                {projectInProgress && <TextButton
-                    label={'Go Back'}
-                    onClick={endProject}
-                />}
-            </div>
-            <div className='RightColumn'>
-                <div />
-                <ImagesDropZone />
-                <div className='SocialMediaWrapper'>
-                    {getSocialMediaButtons({ width: 30, height: 30 })}
-                </div>
-                {!projectInProgress && <TextButton
-                    label={'Get Started'}
-                    onClick={startProject}
-                    externalClassName={'get-started-button'}
-                />}
-            </div>
-        </div>
+            </div></>
     );
 };
 

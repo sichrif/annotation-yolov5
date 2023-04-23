@@ -14,8 +14,9 @@ import { PlatformModel } from './staticModels/PlatformModel';
 import classNames from 'classnames';
 import NotificationsView from './views/NotificationsView/NotificationsView';
 import { RoboflowAPIDetails } from './store/ai/types';
-import DetectDetails from './Components/DetectDetails/DetectDetails';
 import Home from './Components/Home/Home';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import DetectDetails from './Components/DetectDetails/DetectDetails';
 
 interface IProps {
     projectType: ProjectType;
@@ -40,10 +41,8 @@ const App: React.FC<IProps> = (
         if (!!PlatformModel.mobileDeviceData.manufacturer && !!PlatformModel.mobileDeviceData.os)
             return <MobileMainView />;
         if (!projectType) {
-            return <Home />
-            // return <MainView />;
-        }
-        else {
+            return <Home />;
+        } else {
             if (windowSize.height < Settings.EDITOR_MIN_HEIGHT || windowSize.width < Settings.EDITOR_MIN_WIDTH) {
                 return <SizeItUpView />;
             } else {
@@ -51,15 +50,29 @@ const App: React.FC<IProps> = (
             }
         }
     };
+
+    const router = createBrowserRouter([
+        {
+            path: "/",
+            element: selectRoute(),
+        }, {
+            path: "/new-product",
+            element: <MainView />,
+        },
+        {
+            path: "/product-details/:id",
+            element: <DetectDetails />,
+        }
+    ]);
+
     const isAILoaded = isObjectDetectorLoaded
         || isPoseDetectionLoaded
         || isYOLOV5ObjectDetectorLoaded
         || (roboflowAPIDetails.model !== '' && roboflowAPIDetails.key !== '' && roboflowAPIDetails.status)
 
     return (
-        <div className={classNames('App', { 'AI': isAILoaded })} draggable={false}
-        >
-            {selectRoute()}
+        <div className={classNames('App', { 'AI': isAILoaded })} draggable={false}>
+            <RouterProvider router={router} />
             <PopupView />
             <NotificationsView />
         </div>

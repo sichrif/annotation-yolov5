@@ -5,7 +5,7 @@ import styles from "./style.module.css"
 import Chart from "../Chart/Chart";
 import DevicesCard from "../DevicesCard/DevicesCard";
 import Camera from "../Camera/Camera";
-import { AreaChart, Gridline, GridlineSeries } from "reaviz";
+// import { AreaChart, Gridline, GridlineSeries } from "reaviz";
 
 export default function DetectDetails() {
     const data = [
@@ -43,7 +43,7 @@ export default function DetectDetails() {
         {
             type: 'Camera type',
             name: 'Nikon Z50',
-            icon: 'ico/dashboard/camera.svg',
+            icon: '/ico/dashboard/camera.svg',
             data: [
                 {
                     key: 'Res',
@@ -63,7 +63,7 @@ export default function DetectDetails() {
         {
             type: 'Running time',
             name: 'Flight time',
-            icon: 'ico/dashboard/time.svg',
+            icon: '/ico/dashboard/time.svg',
             data: [
                 {
                     key: 'Time',

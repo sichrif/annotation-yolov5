@@ -6,7 +6,7 @@ export interface IEditorFeature {
 
 export const EditorFeatureData: IEditorFeature[] = [
     {
-        displayText: 'Open source and free to use under GPLv3 license',
+        displayText: 'Annotate images with bounding boxes, polygons, points and lines',
         imageSrc: 'ico/open-source.png',
         imageAlt: 'open-source',
     },
@@ -16,17 +16,17 @@ export const EditorFeatureData: IEditorFeature[] = [
         imageAlt: 'online',
     },
     {
-        displayText: "We don't store your images, because we don't send them anywhere",
+        displayText: "Everything is secured in our database, you don't have to worry about losing your data",
         imageSrc: 'ico/private.png',
         imageAlt: 'private',
     },
     {
-        displayText: 'Support one label type - rectangles',
+        displayText: 'Supports multiple products, each with its own set of images and annotations',
         imageSrc: 'ico/labels.png',
         imageAlt: 'labels',
     },
     {
-        displayText: 'Support output file formats like YOLO, VOC XML, VGG JSON, CSV',
+        displayText: 'It automates production checks and helps you to find defects early in the process',
         imageSrc: 'ico/file.png',
         imageAlt: 'file',
     },
