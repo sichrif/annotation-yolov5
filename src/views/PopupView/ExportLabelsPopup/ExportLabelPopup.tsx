@@ -79,7 +79,7 @@ const ExportLabelPopup: React.FC<IProps> = ({ activeLabelType }) => {
             activeLabelType={labelType}
             title={`Export ${labelType.toLowerCase()} annotations`}
             onLabelTypeChange={onLabelTypeChange}
-            acceptLabel={'Export'}
+            acceptLabel={'Start'}
             onAccept={onAccept}
             disableAcceptButton={!exportFormatType}
             rejectLabel={'Cancel'}

@@ -39,7 +39,7 @@ export default function Header() {
                         <div className={styles.profileName}>Cherif</div>
                         <div className={styles.profileBadge}>Engineer</div>
                     </div>
-                    <MenuPopupState items={items} element={
+                    <MenuPopupState key={"header"} items={items} element={
                         <div style={{ display: "flex", cursor: "pointer" }}>
                             <img className={styles.useImage} src="/ico/dashboard/user.png" alt="profile" />
                             <img className={styles.arrowImage} src="/ico/dashboard/down-arrow.svg" alt="arrow" />

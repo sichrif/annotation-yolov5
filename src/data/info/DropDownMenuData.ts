@@ -28,20 +28,12 @@ export const DropDownMenuData: DropDownMenuNode[] = [
                 onClick: () => store.dispatch(updateActivePopupType(PopupWindowType.UPDATE_LABEL))
             },
             {
-                name: 'Import Images',
+                name: 'Import More Images',
                 description: 'Load more images',
                 imageSrc: 'ico/camera.png',
                 imageAlt: 'images',
                 disabled: false,
                 onClick: () => store.dispatch(updateActivePopupType(PopupWindowType.IMPORT_IMAGES))
-            },
-            {
-                name: 'Import Annotations',
-                description: 'Import annotations from file',
-                imageSrc: 'ico/import-labels.png',
-                imageAlt: 'import-labels',
-                disabled: false,
-                onClick: () => store.dispatch(updateActivePopupType(PopupWindowType.IMPORT_ANNOTATIONS))
             },
             {
                 name: 'Export Annotations',

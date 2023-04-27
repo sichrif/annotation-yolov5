@@ -27,8 +27,8 @@ export default function MenuPopupState({ element, items }: PopupStateProps) {
                             marginLeft: "-23px"
                         }
                     }}  {...bindMenu(popupState)}>
-                        {items.map((item) => (
-                            <MenuItem onClick={popupState.close}>{item}</MenuItem>
+                        {items.map((item, i) => (
+                            <MenuItem key={i} onClick={popupState.close}>{item}</MenuItem>
                         ))}
                     </Menu>
                 </React.Fragment>

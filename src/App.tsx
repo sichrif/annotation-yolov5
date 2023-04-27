@@ -17,12 +17,13 @@ import { RoboflowAPIDetails } from './store/ai/types';
 import Home from './Components/Home/Home';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import DetectDetails from './Components/DetectDetails/DetectDetails';
+import Login from './Components/Login/Login';
 
 interface IProps {
     projectType: ProjectType;
     windowSize: ISize;
-    isObjectDetectorLoaded: boolean;
-    isPoseDetectionLoaded: boolean;
+    isObjectDetectorLoaded?: boolean;
+    isPoseDetectionLoaded?: boolean;
     isYOLOV5ObjectDetectorLoaded: boolean;
     roboflowAPIDetails: RoboflowAPIDetails;
 }
@@ -41,7 +42,7 @@ const App: React.FC<IProps> = (
         if (!!PlatformModel.mobileDeviceData.manufacturer && !!PlatformModel.mobileDeviceData.os)
             return <MobileMainView />;
         if (!projectType) {
-            return <Home />;
+            return <MainView />;
         } else {
             if (windowSize.height < Settings.EDITOR_MIN_HEIGHT || windowSize.width < Settings.EDITOR_MIN_WIDTH) {
                 return <SizeItUpView />;
@@ -54,15 +55,20 @@ const App: React.FC<IProps> = (
     const router = createBrowserRouter([
         {
             path: "/",
-            element: selectRoute(),
+            element: <Home />,
         }, {
             path: "/new-product",
-            element: <MainView />,
+            element: selectRoute(),
         },
         {
             path: "/product-details/:id",
             element: <DetectDetails />,
+        },
+        {
+            path: "/login",
+            element: <Login />,
         }
+
     ]);
 
     const isAILoaded = isObjectDetectorLoaded

@@ -13,7 +13,6 @@ import { ISize } from '../../interfaces/ISize';
 import { NumberUtil } from '../../utils/NumberUtil';
 import { RectUtil } from '../../utils/RectUtil';
 import { Settings } from '../../settings/Settings';
-
 export class RectLabelsExporter {
     public static export(exportFormatType: AnnotationFormatType): void {
         RectLabelsExporter.exportAsYOLO();
@@ -69,20 +68,30 @@ export class RectLabelsExporter {
         };
         console.log("labelsArray", yamlData);
         const yamlString = jsYaml.dump(yamlData, { indent: 2, flowLevel: 1, noArrayIndent: true });
+
+
         zip.file('data.yaml', yamlString);
+
+        // const formData = new FormData();
+        // formData.append('file', await zip.generateAsync({ type: 'blob' }), `${ExporterUtil.getExportFileName()}.zip`);
 
         try {
             const content = await zip.generateAsync({ type: 'blob' });
-            saveAs(content, `${ExporterUtil.getExportFileName()}.zip`);
+            const fileName = `${ExporterUtil.getExportFileName()}.zip`;
+
+            const formData = new FormData();
+            formData.append('file', new Blob([content]), fileName);
+
+
+            const response = await fetch(import.meta.env.VITE_API_URL + '/process', {
+                method: 'POST',
+                body: formData,
+            });
+            console.log('API response:', response);
         } catch (error) {
             throw new Error(error as string);
         }
     }
-
-
-
-
-
 
     public static wrapRectLabelIntoYOLO(labelRect: LabelRect, labelNames: LabelName[], imageSize: ISize): string {
         const snapAndFix = (value: number) => NumberUtil.snapValueToRange(value, 0, 1).toFixed(6)

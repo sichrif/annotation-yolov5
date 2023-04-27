@@ -26,7 +26,7 @@ export default function HomeCard(content: CardProps) {
                     <span>{content.title}</span>
                 </div>
                 <div className={styles.menu}>
-                    <MenuPopupState items={items} element={
+                    <MenuPopupState key={"card"} items={items} element={
                         <img className={styles.dots} src="ico/dashboard/dots.svg" alt="dots" />
                     } />
                 </div>

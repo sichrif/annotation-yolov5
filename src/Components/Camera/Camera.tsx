@@ -128,7 +128,7 @@ export default function Camera() {
             <div className="player__wrapper" onMouseMove={mouseMoveHandler}>
                 {!playing && <div className={styles.imageCover}></div>}
                 {playing && <div className={styles.info}>
-                    <div className={styles.infoRed}>{videoState.playedSeconds.toFixed(2)}s</div>
+                    {/* <div className={styles.infoRed}>{videoState.playedSeconds.toFixed(2)}s</div> */}
                     <div className={styles.infoGreen}>1.56 km</div>
 
                 </div>}
@@ -136,7 +136,7 @@ export default function Camera() {
                     <ReactPlayer
                         ref={videoPlayerRef}
                         className="player"
-                        url="https://cdn.flowplayer.com/a30bd6bc-f98b-47bc-abf5-97633d4faea0/hls/de3f6ca7-2db3-4689-8160-0f574a5996ad/playlist.m3u8"
+                        url="https://www.youtube.com/watch?v=kK0AHd9N7dk"
                         width="100%"
                         height="100%"
                         playing={playing}
