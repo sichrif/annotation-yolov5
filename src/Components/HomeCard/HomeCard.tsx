@@ -22,13 +22,15 @@ export default function HomeCard(content: CardProps) {
         content.type == "content" ? <div onClick={() => navigate(`/product-details/${content.title}`)} className={styles.container}>
             <div className={styles.cardHeader}>
                 <div className={styles.cardHeader}>
+                    <img src={"ico/dashboard/trash.png"} alt={"Delete this device"} className={`${styles.delete} ${styles.img}`} />
                     <img src={content.icon} alt={content.title} />
                     <span>{content.title}</span>
                 </div>
                 <div className={styles.menu}>
-                    <MenuPopupState key={"card"} items={items} element={
+                    <img className={styles.img} src={"ico/dashboard/startup.png"} alt={"Start the detection"} />
+                    {/* <MenuPopupState key={"card"} items={items} element={
                         <img className={styles.dots} src="ico/dashboard/dots.svg" alt="dots" />
-                    } />
+                    } /> */}
                 </div>
             </div>
 

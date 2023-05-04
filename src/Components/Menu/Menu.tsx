@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
+import { useNavigate } from 'react-router-dom';
 
 interface PopupStateProps {
     element: any;
@@ -10,6 +11,7 @@ interface PopupStateProps {
 }
 
 export default function MenuPopupState({ element, items }: PopupStateProps) {
+    const navigate = useNavigate();
     return (
         <PopupState variant="popover" popupId="demo-popup-menu">
             {(popupState) => (
@@ -28,7 +30,10 @@ export default function MenuPopupState({ element, items }: PopupStateProps) {
                         }
                     }}  {...bindMenu(popupState)}>
                         {items.map((item, i) => (
-                            <MenuItem key={i} onClick={popupState.close}>{item}</MenuItem>
+                            <MenuItem key={i} onClick={() => {
+                                if (item == "Logout") navigate("/login");
+                                popupState.close;
+                            }}>{item}</MenuItem>
                         ))}
                     </Menu>
                 </React.Fragment>

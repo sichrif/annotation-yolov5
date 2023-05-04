@@ -20,7 +20,7 @@ export default function Home() {
         }
     ];
     return (
-        <div>
+        <div className="component" >
             <Header />
             <div className={styles.container}>
                 {cardContent.map((content, index) => {

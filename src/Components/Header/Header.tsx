@@ -2,7 +2,7 @@ import MenuPopupState from "../Menu/Menu"
 import styles from "./style.module.css"
 
 export default function Header() {
-    const items = ["Profile", "My account", "Logout"];
+    const items = ["Profile", "Logout"];
     return (
         <div className={styles.container}>
             <div className={styles.logo}>
@@ -12,7 +12,7 @@ export default function Header() {
                 <div className={styles.item}><img src="/ico/dashboard/analytics.svg" alt="analytics" />
                     <span>Dashboard</span>
                 </div>
-                <div className={styles.item}><img src="/ico/dashboard/table.svg" alt="table" />
+                {/* <div className={styles.item}><img src="/ico/dashboard/table.svg" alt="table" />
                     <span>Tables</span>
                 </div>
                 <div className={styles.item}><img src="/ico/dashboard/alerts.svg" alt="Alerts" />
@@ -20,19 +20,19 @@ export default function Header() {
                 </div>
                 <div className={styles.item}><img src="/ico/dashboard/news.svg" alt="news" />
                     <span>News</span>
-                </div>
+                </div> */}
             </div>
             <div className={styles.profile}>
                 <div className={styles.profileOptions}>
                     <div className={styles.profileOption}>
                         <img src="/ico/dashboard/search.svg" alt="search" />
                     </div>
-                    <div className={styles.profileOption}>
+                    {/* <div className={styles.profileOption}>
                         <img src="/ico/dashboard/chat.svg" alt="chat" />
                     </div>
                     <div className={styles.profileOption}>
                         <img src="/ico/dashboard/notif.svg" alt="notif" />
-                    </div>
+                    </div> */}
                 </div>
                 <div className={styles.profileRow}>
                     <div className={styles.profileText}>

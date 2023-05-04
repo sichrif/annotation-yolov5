@@ -15,7 +15,7 @@ import classNames from 'classnames';
 import NotificationsView from './views/NotificationsView/NotificationsView';
 import { RoboflowAPIDetails } from './store/ai/types';
 import Home from './Components/Home/Home';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Navigate, Route, RouterProvider } from 'react-router-dom';
 import DetectDetails from './Components/DetectDetails/DetectDetails';
 import Login from './Components/Login/Login';
 
@@ -27,6 +27,20 @@ interface IProps {
     isYOLOV5ObjectDetectorLoaded: boolean;
     roboflowAPIDetails: RoboflowAPIDetails;
 }
+
+
+function PrivateRoute({ children, isAuth }) {
+
+    if (isAuth) {
+        // not logged in so redirect to login page with the return url
+        return <Navigate to="/login" replace />
+    }
+
+    // authorized so return child components
+    return children;
+}
+
+
 
 const App: React.FC<IProps> = (
     {
@@ -62,7 +76,9 @@ const App: React.FC<IProps> = (
         },
         {
             path: "/product-details/:id",
-            element: <DetectDetails />,
+            element: <PrivateRoute isAuth={true}>
+                <DetectDetails />
+            </PrivateRoute>,
         },
         {
             path: "/login",
