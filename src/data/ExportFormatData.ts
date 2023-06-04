@@ -8,7 +8,7 @@ export const ExportFormatData: ExportFormatDataMap = {
     [LabelType.RECT]: [
         {
             type: AnnotationFormatType.YOLO,
-            label: 'Are you sure you want to start the training? or are you adding more images?',
+            label: 'Are you sure you want to start the training?',
         }
     ]
 }

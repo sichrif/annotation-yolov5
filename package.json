@@ -10,6 +10,7 @@
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.9.1",
     "@mui/system": "^5.9.1",
+    "@react-spring/web": "^9.7.2",
     "@tensorflow-models/coco-ssd": "^2.2.2",
     "@tensorflow-models/posenet": "^2.2.2",
     "@tensorflow/tfjs": "^3.19.0",

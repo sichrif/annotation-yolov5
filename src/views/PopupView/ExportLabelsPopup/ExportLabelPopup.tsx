@@ -13,6 +13,7 @@ import GenericLabelTypePopup from '../GenericLabelTypePopup/GenericLabelTypePopu
 import { ExportFormatData } from '../../../data/ExportFormatData';
 import { AppState } from '../../../store';
 import { connect } from 'react-redux';
+import { TextField } from '@mui/material';
 
 interface IProps {
     activeLabelType: LabelType,
@@ -64,6 +65,14 @@ const ExportLabelPopup: React.FC<IProps> = ({ activeLabelType }) => {
                 Select label type and the file format you would like to use to export labels.
             </div>,
             <div className='Options'>
+                <div style={{
+                    display: "flex",
+                    width: "100%",
+                    justifyContent: "space-evenly",
+                }}>
+                    <TextField sx={{ width: "40%" }} type='number' id="filled-basic" label="Number of Epochs" variant="filled" />
+                    <TextField sx={{ width: "40%" }} type='number' id="filled-basic" label="Number of Bachs" variant="filled" />
+                </div>
                 {getOptions(ExportFormatData[type])}
             </div>
         </>;
