@@ -18,6 +18,8 @@ import Home from './Components/Home/Home';
 import { createBrowserRouter, Navigate, Route, RouterProvider } from 'react-router-dom';
 import DetectDetails from './Components/DetectDetails/DetectDetails';
 import Login from './Components/Login/Login';
+import Signup from './Components/Signup/Signup';
+import ForgotPassWord from './Components/ForgotPassWord/ForgotPassWord';
 
 interface IProps {
     projectType: ProjectType;
@@ -76,13 +78,22 @@ const App: React.FC<IProps> = (
         },
         {
             path: "/product-details/:id",
-            element: <PrivateRoute isAuth={true}>
+            element: <PrivateRoute isAuth={false}>
                 <DetectDetails />
             </PrivateRoute>,
         },
         {
             path: "/login",
             element: <Login />,
+        },
+        {
+            path: "/signup",
+            element: <Signup />,
+        },
+        ,
+        {
+            path: "/reset-password",
+            element: <ForgotPassWord />,
         }
 
     ]);
