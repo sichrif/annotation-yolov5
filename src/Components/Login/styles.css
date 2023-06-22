@@ -161,3 +161,10 @@ input[type="submit"] {
 input[type="submit"]:active {
     opacity: 0.8;
 }
+
+.error {
+    color: red;
+    font-size: 0.75em;
+    margin-top: 5px;
+    margin-left: 5px;
+}

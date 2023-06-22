@@ -1,30 +1,47 @@
+import { useEffect, useState } from "react";
 import Header from "../Header/Header"
 import HomeCard from "../HomeCard/HomeCard";
 import styles from "./style.module.css"
 
 export default function Home() {
-    const cardContent = [
-        {
-            title: "SpaceX Engine - GSE4 - 1",
-            icon: "/ico/dashboard/artificial-intelligence.png",
-            description: "He agrees that the IO-360-L2A is the closest to the definition of most reliable. There is one bright spot. Lycoming's roller tappets-available on many Lycoming engines for new aircraft and for replacement engines in legacy airplanes-appear to be doing wel",
-            footer: "Total Estimation",
-            image: "/ico/dashboard/device.svg"
-        },
-        {
-            title: "FedEx Cargo - GSE4 - 1",
-            icon: "/ico/dashboard/artificial-intelligence.png",
-            description: "1000,000",
-            footer: "Total Estimation",
-            image: "/ico/dashboard/device.svg"
-        }
-    ];
+    let url = "http://127.0.0.1:5000";
+    const [models, setModels] = useState([]);
+    useEffect(() => {
+        fetchModels();
+    }, [])
+
+    const fetchModels = () => {
+        fetch(`${url}/models`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                setModels(data.models);
+            }
+            );
+    }
+    useEffect(() => {
+        console.log(models);
+    }, [models])
+    const deleteModel = (modelId) => {
+        // Filter out the model with the specified model_id
+        const updatedModels = models.filter((model) => model.model_id !== modelId);
+
+        // Update the state with the updated models array
+        setModels(updatedModels);
+    };
+
+
     return (
         <div className="component" >
             <Header />
             <div className={styles.container}>
-                {cardContent.map((content, index) => {
-                    return <HomeCard key={index} type="content" {...content} />
+                {models.map((content, index) => {
+                    return <HomeCard key={index} type="content" title={content.model_name} id={content.model_id} deleteModels={(id) => deleteModel(id)} />
                 })
                 }
                 <HomeCard type="new" />

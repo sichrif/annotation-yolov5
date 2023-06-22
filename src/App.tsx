@@ -20,6 +20,7 @@ import DetectDetails from './Components/DetectDetails/DetectDetails';
 import Login from './Components/Login/Login';
 import Signup from './Components/Signup/Signup';
 import ForgotPassWord from './Components/ForgotPassWord/ForgotPassWord';
+import { GeneralSelector } from './store/selectors/GeneralSelector';
 
 interface IProps {
     projectType: ProjectType;
@@ -54,6 +55,7 @@ const App: React.FC<IProps> = (
         roboflowAPIDetails
     }
 ) => {
+    let isLoggedIn: boolean = GeneralSelector.getisLoggedInState();
     const selectRoute = () => {
         if (!!PlatformModel.mobileDeviceData.manufacturer && !!PlatformModel.mobileDeviceData.os)
             return <MobileMainView />;
@@ -71,29 +73,31 @@ const App: React.FC<IProps> = (
     const router = createBrowserRouter([
         {
             path: "/",
-            element: <Home />,
+            element: <PrivateRoute isAuth={isLoggedIn}>
+                <Home />
+            </PrivateRoute>,
         }, {
             path: "/new-product",
             element: selectRoute(),
         },
         {
             path: "/product-details/:id",
-            element: <PrivateRoute isAuth={false}>
+            element: <PrivateRoute isAuth={isLoggedIn}>
                 <DetectDetails />
             </PrivateRoute>,
         },
         {
             path: "/login",
-            element: <Login />,
+            element: <Login />
         },
         {
             path: "/signup",
-            element: <Signup />,
+            element: <Signup />
         },
         ,
         {
             path: "/reset-password",
-            element: <ForgotPassWord />,
+            element: <ForgotPassWord />
         }
 
     ]);

@@ -1,9 +1,9 @@
-import {ISize} from '../../interfaces/ISize';
-import {GeneralActionTypes, ProjectData} from './types';
-import {Action} from '../Actions';
-import {PopupWindowType} from '../../data/enums/PopupWindowType';
-import {CustomCursorStyle} from '../../data/enums/CustomCursorStyle';
-import {ContextType} from '../../data/enums/ContextType';
+import { ISize } from '../../interfaces/ISize';
+import { GeneralActionTypes, ProjectData } from './types';
+import { Action } from '../Actions';
+import { PopupWindowType } from '../../data/enums/PopupWindowType';
+import { CustomCursorStyle } from '../../data/enums/CustomCursorStyle';
+import { ContextType } from '../../data/enums/ContextType';
 
 export function updateWindowSize(windowSize: ISize): GeneralActionTypes {
     return {
@@ -46,6 +46,15 @@ export function updatePreventCustomCursorStatus(preventCustomCursor: boolean): G
         type: Action.UPDATE_PREVENT_CUSTOM_CURSOR_STATUS,
         payload: {
             preventCustomCursor,
+        },
+    };
+}
+export function UPDATE_IS_LOGGED_IN_STATUS(isLoggedIn: boolean): GeneralActionTypes {
+
+    return {
+        type: Action.UPDATE_IS_LOGGED_IN_STATUS,
+        payload: {
+            isLoggedIn,
         },
     };
 }

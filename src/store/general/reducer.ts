@@ -1,7 +1,7 @@
-import {GeneralActionTypes, GeneralState} from './types';
-import {Action} from '../Actions';
-import {CustomCursorStyle} from '../../data/enums/CustomCursorStyle';
-import {ViewPointSettings} from '../../settings/ViewPointSettings';
+import { GeneralActionTypes, GeneralState } from './types';
+import { Action } from '../Actions';
+import { CustomCursorStyle } from '../../data/enums/CustomCursorStyle';
+import { ViewPointSettings } from '../../settings/ViewPointSettings';
 
 const initialState: GeneralState = {
     windowSize: null,
@@ -16,7 +16,8 @@ const initialState: GeneralState = {
         type: null,
         name: 'my-project-name',
     },
-    zoom: ViewPointSettings.MIN_ZOOM
+    zoom: ViewPointSettings.MIN_ZOOM,
+    isLoggedIn: false,
 };
 
 export function generalReducer(
@@ -52,6 +53,12 @@ export function generalReducer(
             return {
                 ...state,
                 preventCustomCursor: action.payload.preventCustomCursor
+            }
+        }
+        case Action.UPDATE_IS_LOGGED_IN_STATUS: {
+            return {
+                ...state,
+                isLoggedIn: action.payload.isLoggedIn
             }
         }
         case Action.UPDATE_IMAGE_DRAG_MODE_STATUS: {

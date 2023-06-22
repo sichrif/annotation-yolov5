@@ -5,6 +5,8 @@ import MenuItem from '@mui/material/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import { useNavigate } from 'react-router-dom';
 import Profile from '../Profile/Profile';
+import { store } from '../../index';
+import { UPDATE_IS_LOGGED_IN_STATUS } from '../../store/general/actionCreators';
 
 interface PopupStateProps {
     element: any;
@@ -40,6 +42,7 @@ export default function MenuPopupState({ element, items }: PopupStateProps) {
                                 <MenuItem key={i} onClick={() => {
                                     if (item == "Logout") {
                                         localStorage.clear();
+                                        store.dispatch(UPDATE_IS_LOGGED_IN_STATUS(true))
                                         navigate("/login");
                                     } else if (item == "Profile") {
                                         handleOpen();

@@ -1,9 +1,9 @@
-import {ISize} from '../../interfaces/ISize';
-import {Action} from '../Actions';
-import {PopupWindowType} from '../../data/enums/PopupWindowType';
-import {CustomCursorStyle} from '../../data/enums/CustomCursorStyle';
-import {ContextType} from '../../data/enums/ContextType';
-import {ProjectType} from '../../data/enums/ProjectType';
+import { ISize } from '../../interfaces/ISize';
+import { Action } from '../Actions';
+import { PopupWindowType } from '../../data/enums/PopupWindowType';
+import { CustomCursorStyle } from '../../data/enums/CustomCursorStyle';
+import { ContextType } from '../../data/enums/ContextType';
+import { ProjectType } from '../../data/enums/ProjectType';
 
 export type ProjectData = {
     type: ProjectType;
@@ -21,6 +21,8 @@ export type GeneralState = {
     activeContext: ContextType;
     projectData: ProjectData;
     zoom: number;
+    isLoggedIn: boolean,
+
 }
 
 interface UpdateProjectData {
@@ -64,6 +66,12 @@ interface UpdatePreventCustomCursorStatus {
         preventCustomCursor: boolean;
     }
 }
+interface UPDATE_IS_LOGGED_IN_STATUS {
+    type: typeof Action.UPDATE_IS_LOGGED_IN_STATUS;
+    payload: {
+        isLoggedIn: boolean;
+    }
+}
 
 interface UpdateImageDragModeStatus {
     type: typeof Action.UPDATE_IMAGE_DRAG_MODE_STATUS;
@@ -99,6 +107,7 @@ export type GeneralActionTypes = UpdateProjectData
     | UpdateCustomCursorStyle
     | UpdateActiveContext
     | UpdatePreventCustomCursorStatus
+    | UPDATE_IS_LOGGED_IN_STATUS
     | UpdateImageDragModeStatus
     | UpdateCrossHairVisibleStatus
     | UpdateZoom
