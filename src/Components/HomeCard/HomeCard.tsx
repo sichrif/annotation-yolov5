@@ -1,6 +1,11 @@
+import { Tooltip } from "@mui/material";
 import MenuPopupState from "../Menu/Menu";
 import styles from "./style.module.css"
 import { useNavigate } from 'react-router-dom';
+import React from "react";
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
 interface CardProps {
     title?: string;
@@ -20,7 +25,14 @@ export default function HomeCard(content: CardProps) {
     let url = "http://127.0.0.1:5000";
     // Generate a random index
     let randomIndex = Math.floor(Math.random() * imagesArray.length);
-
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
+    const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
     function handleClick() {
         navigate("/new-product");
@@ -44,17 +56,100 @@ export default function HomeCard(content: CardProps) {
             }
             );
     }
-    console.log("content", content);
+    const TrainStart = (title: string) => {
+        fetch(`${url}/train?model_name=${title}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("access_token")}`,
+            },
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log("data", data);
+            }
+            );
+    }
+    const Detect = (title: string) => {
+        fetch(`${url}/detect?model_name=${title}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("access_token")}`,
+            },
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log("data", data);
+            }
+            );
+    }
+
     return (
         content.type == "content" ? <div className={styles.container}>
             <div className={styles.cardHeader}>
                 <div className={styles.cardHeader}>
-                    <img onClick={() => deleteModel(content.id)} src={"ico/dashboard/trash.png"} alt={"Delete this device"} className={`${styles.delete} ${styles.img}`} />
+                    <Tooltip title="Delete" arrow>
+                        <img onClick={() => deleteModel(content.title)} src={"ico/dashboard/trash.png"} alt={"Delete this device"} className={`${styles.delete} ${styles.img}`} />
+                    </Tooltip>
                     <img src={"/ico/dashboard/artificial-intelligence.png"} alt={content.title} />
                     <span>{content.title}</span>
                 </div>
                 <div className={styles.menu}>
-                    <img className={styles.img} src={"ico/dashboard/startup.png"} alt={"Start the detection"} />
+
+                    <div>
+                        <Button
+                            id="basic-button"
+                            aria-controls={open ? 'basic-menu' : undefined}
+                            aria-haspopup="true"
+                            aria-expanded={open ? 'true' : undefined}
+                            onClick={handleMenuClick}
+                        >
+
+                            <svg width={"25px"} height={"25px"} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512">
+                                <path fill="gray" d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z" />
+                            </svg>
+                        </Button>
+                        <Menu
+                            id="basic-menu"
+                            anchorEl={anchorEl}
+                            open={open}
+                            onClose={handleClose}
+                            MenuListProps={{
+                                'aria-labelledby': 'basic-button',
+                            }}
+                        >
+                            <MenuItem onClick={() => {
+                                Detect(content.title);
+                                handleClose()
+                            }}>
+                                <Tooltip title="Start detection process" arrow placement="right">
+                                    <div style={{
+                                        display: "flex",
+                                        gap: "10px",
+                                        alignItems: "center"
+                                    }}>
+                                        <img style={{ cursor: "pointer", width: "25px" }} className={styles.img} src={"ico/dashboard/startup.png"} alt={"Start the detection"} />
+                                        <span style={{ color: "black" }}>Detect</span>
+                                    </div>
+                                </Tooltip>
+                            </MenuItem>
+                            <MenuItem onClick={() => { TrainStart(content.title); handleClose() }}>
+                                <Tooltip title="Start training" arrow placement="right">
+                                    <div style={{
+                                        display: "flex",
+                                        gap: "10px",
+                                        alignItems: "center"
+                                    }}>
+                                        <img style={{ cursor: "pointer", width: "25px" }} src={"/ico/dashboard/train.png"} alt={content.title} />
+                                        <span style={{ color: "black" }}>Train</span>
+                                    </div>
+                                </Tooltip>
+                            </MenuItem>
+
+                        </Menu>
+                    </div>
+
                     {/* <MenuPopupState key={"card"} items={items} element={
                         <img className={styles.dots} src="ico/dashboard/dots.svg" alt="dots" />
                     } /> */}

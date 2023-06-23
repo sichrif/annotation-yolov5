@@ -86,6 +86,8 @@
     float: revert;
     right: 4px;
     position: absolute;
+    gap: 13px;
+    display: flex;
 }
 
 .delete {

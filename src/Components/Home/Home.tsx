@@ -46,6 +46,7 @@ export default function Home() {
                 }
                 <HomeCard type="new" />
             </div>
+            <div className={styles.divider}></div>
         </div>
     )
 }
