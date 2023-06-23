@@ -14,11 +14,11 @@ import { NumberUtil } from '../../utils/NumberUtil';
 import { RectUtil } from '../../utils/RectUtil';
 import { Settings } from '../../settings/Settings';
 export class RectLabelsExporter {
-    public static export(exportFormatType: AnnotationFormatType): void {
-        RectLabelsExporter.exportAsYOLO();
+    public static export(exportFormatType: AnnotationFormatType, deviceName: string): void {
+        RectLabelsExporter.exportAsYOLO(deviceName);
     }
 
-    private static async exportAsYOLO(): Promise<void> {
+    private static async exportAsYOLO(deviceName: string): Promise<void> {
         const classNames = LabelsSelector.getLabelNames();
 
         const zip = new JSZip();
@@ -81,13 +81,22 @@ export class RectLabelsExporter {
 
             const formData = new FormData();
             formData.append('file', new Blob([content]), fileName);
+            formData.append("model_name", deviceName);
 
 
-            const response = await fetch(import.meta.env.VITE_API_URL + '/process', {
+            let url = "http://127.0.0.1:5000";
+            const response = await fetch(url + '/process', {
                 method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                },
                 body: formData,
+                redirect: 'follow'
+
             });
             console.log('API response:', response);
+            window.location.href = "/";
+
         } catch (error) {
             throw new Error(error as string);
         }

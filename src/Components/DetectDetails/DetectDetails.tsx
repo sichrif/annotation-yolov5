@@ -157,7 +157,7 @@ export default function DetectDetails() {
                     </div>
                 </div>
                 <div className={styles.charts}>
-                    <img width={"100%"} height={"100%"} src={images[0]} alt="image" />
+                    {images && images[0] && <img width={"100%"} height={"100%"} src={images[0]} alt="image" />}
 
                     <ChartContainer title="Lines chart" date="May to June 2021" Chart={() => <Chart data={data} />} />
                     <ChartContainer title="Lines chart" date="May to June 2021" Chart={() => <Chart data={data} />} />

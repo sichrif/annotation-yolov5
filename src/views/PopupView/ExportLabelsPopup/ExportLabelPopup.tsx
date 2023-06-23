@@ -22,9 +22,10 @@ interface IProps {
 const ExportLabelPopup: React.FC<IProps> = ({ activeLabelType }) => {
     const [labelType, setLabelType] = useState(activeLabelType);
     const [exportFormatType, setExportFormatType] = useState(null);
+    const [deviceName, setDeviceName] = useState("");
 
     const onAccept = (type: LabelType) => {
-        RectLabelsExporter.export(exportFormatType)
+        RectLabelsExporter.export(exportFormatType, deviceName)
         PopupActions.close();
     };
 
@@ -58,7 +59,6 @@ const ExportLabelPopup: React.FC<IProps> = ({ activeLabelType }) => {
             </div>;
         });
     };
-
     const renderInternalContent = (type: LabelType) => {
         return <>
             <div className='Message'>
@@ -71,7 +71,9 @@ const ExportLabelPopup: React.FC<IProps> = ({ activeLabelType }) => {
                     justifyContent: "space-evenly",
                 }}>
                     <TextField sx={{ width: "40%" }} type='number' id="filled-basic" label="Number of Epochs" variant="filled" />
-                    <TextField sx={{ width: "40%" }} type='number' id="filled-basic" label="Number of Bachs" variant="filled" />
+                    <TextField sx={{ width: "40%" }} value={deviceName} onChange={(e) => {
+                        setDeviceName(e.target.value);
+                    }} type='text' id="filled-basic" label="Device Name" variant="filled" />
                 </div>
                 {getOptions(ExportFormatData[type])}
             </div>
